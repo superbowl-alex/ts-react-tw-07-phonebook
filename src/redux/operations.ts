@@ -17,12 +17,12 @@ interface DeleteContactResponse {
 
 axios.defaults.baseURL = 'https://636a41b9b10125b78fd559da.mockapi.io';
 
-export const fetchContacts = createAsyncThunk<Contact[], void, { rejectValue: string }>(
+export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, thunkAPI) => {
     try {
       const response = await axios.get<FetchContactsResponse>('/contacts');
-      return response.data.data;
+      return (response.data) as FetchContactsResponse;
     } catch (e: any) {
       if (e instanceof Error) {
         return thunkAPI.rejectWithValue(e.message);
@@ -33,19 +33,16 @@ export const fetchContacts = createAsyncThunk<Contact[], void, { rejectValue: st
   }
 );
 
-export const addContact = createAsyncThunk<Contact, Data, { rejectValue: string }>(
+export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (values: Data, thunkAPI) => {
     try {
-      const { name, number } = values;
-      console.log("values", values)
+      const { name, phone } = values;
       const response = await axios.post<AddContactResponse>('/contacts', {
         name: name,
-        phone: number,
+        phone: phone,
       });
-      console.log("response", response)
-
-      return response.data.data;
+      return (response.data) as AddContactResponse;
     } catch (e: any) {
       if (e instanceof Error) {
         return thunkAPI.rejectWithValue(e.message);
@@ -56,12 +53,12 @@ export const addContact = createAsyncThunk<Contact, Data, { rejectValue: string 
   }
 );
 
-export const deleteContact = createAsyncThunk<Contact, string, { rejectValue: string }>(
+export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
-  async (contactId, thunkAPI) => {
+  async (contactId: string, thunkAPI) => {
     try {
       const response = await axios.delete<DeleteContactResponse>(`/contacts/${contactId}`);
-      return response.data.data;
+      return (response.data) as DeleteContactResponse;
     } catch (e: any) {
       if (e instanceof Error) {
         return thunkAPI.rejectWithValue(e.message);

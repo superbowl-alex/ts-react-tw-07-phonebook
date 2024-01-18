@@ -7,12 +7,12 @@ const getActions = (type: 'fulfilled' | 'pending' | 'rejected') => actions.map(a
 export type Contact = {
   id: string;
   name: string;
-  number: string;
+  phone: string;
 }
 
 export type Data = {
   name: string;
-  number: string;
+  phone: string;
 }
 
 type ContactsState = {
@@ -32,8 +32,6 @@ const fetchContactsSuccessReducer = (state: ContactsState, action: PayloadAction
 };
 
 const addContactsSuccessReducer = (state: ContactsState, action: PayloadAction<Contact>) => {
-  console.log("action.payload", action.payload);
-  console.log("state", state);
   state.items?.push(action.payload);
 };
 

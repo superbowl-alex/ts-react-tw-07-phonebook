@@ -32,7 +32,7 @@ const schema = yup.object().shape({
       'Name may contain only letters, apostrophe, dash and spaces without spaces at the beginning and end of the name'
     )
     .required('This field is required'),
-  number: yup
+    phone: yup
     .string()
     .matches(
       /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
@@ -75,7 +75,7 @@ const ContactForm: FC = () => {
 
   return (
     <Formik
-      initialValues={{ name: '', number: '' }}
+      initialValues={{ name: '', phone: '' }}
       validationSchema={schema}
       onSubmit={handleSubmit}
     >
@@ -90,8 +90,8 @@ const ContactForm: FC = () => {
         <label className='w-full flex flex-col p-2 gap-2'>
           Number
           <div className='w-full relative'>
-            <Field className='w-full py-2 px-4 rounded-lg border-2 border-blue text-inherit outline-none hover:outline-[3] hover:outline-blue hover:outline-offset-0 focus:outline-[3] focus:outline-blue focus:outline-offset-0' type="text" name="number" autoComplete="off"  />
-            <FormError name="number" />
+            <Field className='w-full py-2 px-4 rounded-lg border-2 border-blue text-inherit outline-none hover:outline-[3] hover:outline-blue hover:outline-offset-0 focus:outline-[3] focus:outline-blue focus:outline-offset-0' type="text" name="phone" autoComplete="off"  />
+            <FormError name="phone" />
           </div>
         </label>
         <button className='my-4 mx-auto p-2 text-white bg-chestnut border-0 rounded-lg transition-all duration-300 hover:scale-[1.05] hover:shadow-md focus:scale-[1.05] focus:shadow-md' type="submit">Add contact</button>

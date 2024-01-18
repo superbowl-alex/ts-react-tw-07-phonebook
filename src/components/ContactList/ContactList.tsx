@@ -17,8 +17,8 @@ const ContactList: FC = () => {
         <Loader />
       ) : contacts?.length > 0 ? (
         <ul className='w-full p-4 flex flex-col justify-center items-center gap-4'>
-          {contacts.map(({ id, name, number }) => (
-            <ContactItem key={id} id={id} name={name} number={number} />
+          {contacts.map(({ id, name, phone }) => (
+            <ContactItem key={id} id={id} name={name} phone={phone} />
           ))}
         </ul>
       ) : (
