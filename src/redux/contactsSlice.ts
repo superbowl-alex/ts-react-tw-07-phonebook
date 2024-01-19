@@ -50,6 +50,7 @@ const anySuccessReducer = (state: ContactsState) => {
 const anyPendingReducer = (state: ContactsState) => {
   state.isLoading = true;
 };
+
 const anyRejectReducer = (state: ContactsState, action: PayloadAction<string>) => {
   state.isLoading = false;
   state.error = action.payload;

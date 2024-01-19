@@ -12,11 +12,7 @@ export const fetchContacts = createAsyncThunk(
       const response = await axios.get<Contact[]>('/contacts');
       return response.data;
     } catch (e: any) {
-      if (e instanceof Error) {
         return thunkAPI.rejectWithValue(e.message);
-      } else {
-        return thunkAPI.rejectWithValue('An error occurred');
-      }
     }
   }
 );
@@ -32,11 +28,7 @@ export const addContact = createAsyncThunk(
       });
       return response.data;
     } catch (e: any) {
-      if (e instanceof Error) {
         return thunkAPI.rejectWithValue(e.message);
-      } else {
-        return thunkAPI.rejectWithValue('An error occurred');
-      }
     }
   }
 );
@@ -48,11 +40,7 @@ export const deleteContact = createAsyncThunk(
       const response = await axios.delete<Contact>(`/contacts/${contactId}`);
       return response.data;
     } catch (e: any) {
-      if (e instanceof Error) {
         return thunkAPI.rejectWithValue(e.message);
-      } else {
-        return thunkAPI.rejectWithValue('An error occurred');
-      }
     }
   }
 );
